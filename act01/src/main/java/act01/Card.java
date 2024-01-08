@@ -15,17 +15,17 @@ public class Card {
   /**
    * String value that holds the suit of the card
    */
-  private String suit;
+  private final String suit;
 
   /**
    * String value that holds the rank of the card
    */
-  private String rank;
+  private final String rank;
 
   /**
    * int value that holds the point value.
    */
-  private int pointValue;
+  private final int pointValue;
 
 
   /**

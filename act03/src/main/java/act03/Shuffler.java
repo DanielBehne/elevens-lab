@@ -4,6 +4,7 @@
  */
 
 package act03;
+import java.util.Random;
 
 /**
  * This class provides a convenient way to test shuffling methods.
@@ -54,6 +55,14 @@ public class Shuffler {
 	 */
 	public static int[] selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-             
+            int n = values.length;
+            Random rand = new Random();
+            for (int k = (n-1); k > 1; k--) {
+                int r = rand.nextInt(k);
+                int temp = values[k];
+                values[k] = values[r];
+                values[r] = temp;
+            }
+            return values;
 	}
 }

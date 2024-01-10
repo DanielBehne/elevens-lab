@@ -26,14 +26,15 @@ public class Shuffler {
             int k = 0;
             int m = 0;
             if (n % 2 != 0) {
-                m = n / 2;
+                m = (n / 2);
             } else if (n % 2 == 0) {
-                m = (n / 2) - 1;
+                m = ((n / 2) - 1);
             }
             for (int j = 0; j < m; j++) {
                 values[j] = shuffled[k];
                 k = k + 2;
             }
+            k = 1;
             for (int j = m + 1; j < (n - 1); j++) {
                 values[j] = shuffled[k];
                 k = k + 2;

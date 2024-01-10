@@ -48,6 +48,7 @@ public class Deck {
                 size++;
             }
             rankValueNum++;
+            shuffle();
         }
     }
 

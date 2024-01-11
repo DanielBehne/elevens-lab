@@ -30,13 +30,13 @@ public class Shuffler {
             } else if (n % 2 == 0) {
                 m = ((n / 2) - 1);
             }
-            for (int j = 0; j < m; j++) {
-                values[j] = shuffled[k];
+            for (int j = 0; j <= m; j++) {
+                shuffled[k] = values[j];
                 k = k + 2;
             }
             k = 1;
-            for (int j = m + 1; j < (n - 1); j++) {
-                values[j] = shuffled[k];
+            for (int j = m + 1; j <= (n - 1); j++) {
+                shuffled[k] = values[j];
                 k = k + 2;
             }
             return shuffled;

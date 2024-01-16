@@ -12,6 +12,15 @@ public class Model implements MessageHandler {
 
   // Game state variables
   // TO BE COMPLETED IN ACTIVITY 07
+  Constants constants = new Constants();
+  String[] RANKS = constants.RANKS;
+  String[] SUITS = constants.SUITS;
+  int[] POINT_VALUES = constants.POINT_VALUES;
+  int BOARD_SIZE = constants.BOARD_SIZE;
+  int YOU_WIN = constants.YOU_WIN;
+  int YOU_LOSE = constants.YOU_LOSE;
+  int IN_PLAY = constants.IN_PLAY;
+  
 
   /**
    * Model constructor: Create the data representation of the program
@@ -28,6 +37,10 @@ public class Model implements MessageHandler {
    */
   public void init() {
     // TO BE COMPLETED IN ACTIVITY 07
+    Deck deck = new Deck(RANKS,SUITS,POINT_VALUES);
+    Card[] board = new Card[9];
+    boolean[] cardSelected = new boolean[9];
+    
   }
   
  /**

@@ -37,9 +37,11 @@ public class Model implements MessageHandler {
    */
   public void init() {
     // TO BE COMPLETED IN ACTIVITY 07
-    //private Deck deck = new Deck(RANKS,SUITS,POINT_VALUES);
-    private Card[] board = new Card[9];
-    private boolean[] cardSelected = new boolean[9];
+     Deck deck = new Deck(RANKS,SUITS,POINT_VALUES);
+     Card[] board = new Card[9];
+     boolean[] cardSelected = new boolean[9];
+     int gamesWon = 0;
+     int gamesPlayed = 0;
     
   }
   

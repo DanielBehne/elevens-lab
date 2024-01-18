@@ -12,14 +12,14 @@ public class Model implements MessageHandler {
 
   // Game state variables
   // TO BE COMPLETED IN ACTIVITY 07
-  Constants constants = new Constants();
-  String[] RANKS = constants.RANKS;
-  String[] SUITS = constants.SUITS;
-  int[] POINT_VALUES = constants.POINT_VALUES;
-  int BOARD_SIZE = constants.BOARD_SIZE;
-  int YOU_WIN = constants.YOU_WIN;
-  int YOU_LOSE = constants.YOU_LOSE;
-  int IN_PLAY = constants.IN_PLAY;
+  private int gameStatus;
+  private Deck deck;
+  private Card[] board;
+  private boolean[] cardSelected;
+  private boolean validSelection;
+  private boolean gameWon;
+  private int gamesWon;
+  private int gamesPlayed;
   
 
   /**
@@ -37,11 +37,12 @@ public class Model implements MessageHandler {
    */
   public void init() {
     // TO BE COMPLETED IN ACTIVITY 07
-     Deck deck = new Deck(RANKS,SUITS,POINT_VALUES);
-     Card[] board = new Card[9];
-     boolean[] cardSelected = new boolean[9];
-     int gamesWon = 0;
-     int gamesPlayed = 0;
+     //Constants constants = new Constants();
+     deck = new Deck(Constants.RANKS,Constants.SUITS,Constants.POINT_VALUES);
+     board = new Card[9];
+     cardSelected = new boolean[Constants.BOARD_SIZE];
+     gamesWon = 0;
+     gamesPlayed = 0;
     
   }
   

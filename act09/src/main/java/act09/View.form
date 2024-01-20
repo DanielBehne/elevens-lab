@@ -23,24 +23,272 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="directionsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="card1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="card2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="card6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="125" max="32767" attributes="0"/>
+                                      <Component id="card7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="card8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="card3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Component id="playBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="canvas1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="clearAllBtn" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="card4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="cardsLeft" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="card9" min="-2" max="-2" attributes="0"/>
+                              <Component id="newGameBtn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="card5" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
-              <Component id="canvas1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="238" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="numberOfGamesPlayedLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="numberOfGamesWonLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="numberOfCardLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+              <Component id="gamesPlayed" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="390" max="32767" attributes="0"/>
+                  <Component id="gamesWon" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="501" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="directionsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="card1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="card6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="card8" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="canvas1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="clearAllBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newGameBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="playBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="numberOfCardLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cardsLeft" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Component id="numberOfGamesWonLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="numberOfGamesPlayedLabel" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="gamesPlayed" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="420" max="32767" attributes="0"/>
+                  <Component id="gamesWon" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="java.awt.Canvas" name="canvas1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="card1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card1"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="0"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card2"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="1"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card3"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="2"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card4"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="3"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card5"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="4"/>
+        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card6"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="5"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card7"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="6"/>
+        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card8"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="7"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="card9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="card9"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="8"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardsLeft">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="cardLeft"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="clearAllBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clear all"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="directionsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Click to select a card; click again to de-select"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="gamesPlayed">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="gamesPlayed"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="gamesWon">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="gamesWon"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="newGameBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="New game"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newGameBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="numberOfCardLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Number of cards left in the deck:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="numberOfGamesPlayedLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Number of games played:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="numberOfGamesWonLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Number of games won:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="playBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Play"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

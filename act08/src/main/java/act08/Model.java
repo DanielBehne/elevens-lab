@@ -52,12 +52,12 @@ public class Model implements MessageHandler {
      */
     private void newGame() {
         // To be implemented in Activity 08
-        init();
+        //init();
         for (int i = 0; i < board.length; i++) {
             board[i] = deck.deal();
             cardSelected[i] = false;
+            validSelection = false;
         }
-        validSelection = false;
         if (isGameOver() == true) {
             gamesPlayed++;
             gameStatus = Constants.YOU_LOSE;
@@ -66,7 +66,6 @@ public class Model implements MessageHandler {
             gameStatus = Constants.IN_PLAY;
         }
         gameWon = false;
-
     }
 
     /**
@@ -81,30 +80,25 @@ public class Model implements MessageHandler {
         boolean kingSelected = false;
         boolean queenSelected = false;
         boolean jackSelected = false;
-        for (int i = 0; i < Constants.BOARD_SIZE; i++) {
+        for (int i = 0; i < cardSelected.length; i++) {
             if (cardSelected[i] == true) {
                 count++;
+                pointTotal += board[i].getPointValue();
             }
-            if (count != 2 || count != 3) {
-                return false;
-            }
-            pointTotal = board[i].getPointValue();
-            if (board[i].getRank().equals("king")) {
+            if (cardSelected[i] == true && board[i].getRank().equals("king")) {
                 kingSelected = true;
             }
-            if (board[i].getRank().equals("queen")) {
+            if (cardSelected[i] == true && board[i].getRank().equals("queen")) {
                 queenSelected = true;
             }
-            if (board[i].getRank().equals("jack")) {
+            if (cardSelected[i] == true && board[i].getRank().equals("jack")) {
                 jackSelected = true;
             }
-            
-            
-            
-            if (kingSelected == true && queenSelected == true && jackSelected == true || pointTotal == 11) {
+            if (count == 3&& kingSelected == true && queenSelected == true && jackSelected == true) {
                 return true;
-            } else {
-                return false;
+            }
+            if (count == 2 && pointTotal == 11) {
+                return true;
             }
         }
         return false;
@@ -119,8 +113,19 @@ public class Model implements MessageHandler {
     private boolean legalMovesAvailable() {
         // To be implemented in Activity 08
         for (int i = 0; i < board.length; i++) {
-            if (board[i].getPointValue() + board[i + 1].getPointValue() == 11) {
-
+            if (board[i].getRank() == "king") {
+                return true;
+            }
+            if (board[i].getRank() == "queen") {
+                return true;
+            }
+            if (board[i].getRank() == "jack") {
+                return true;
+            }
+            for (int w = 0; w < board.length; w++) {
+                if (board[i].getPointValue() + board[w].getPointValue() == 11) {
+                    return true;
+                }
             }
         }
         return false;
@@ -133,7 +138,10 @@ public class Model implements MessageHandler {
      */
     private boolean isGameOver() {
         // To be implemented in Activity 08
-        return true;
+        if (deck.size() == 0 || legalMovesAvailable() == false) {
+            return true;
+        }
+        return false;
     }
 
     /**

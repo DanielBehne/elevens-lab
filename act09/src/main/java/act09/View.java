@@ -51,6 +51,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private void initComponents() {
 
         canvas1 = new java.awt.Canvas();
+        cards = new javax.swing.JLabel();
         card1 = new javax.swing.JLabel();
         card2 = new javax.swing.JLabel();
         card3 = new javax.swing.JLabel();
@@ -66,12 +67,15 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         gamesPlayed = new javax.swing.JLabel();
         gamesWon = new javax.swing.JLabel();
         newGameBtn = new javax.swing.JButton();
-        numberOfCardLabel = new javax.swing.JLabel();
+        numberOfCardsLabel = new javax.swing.JLabel();
         numberOfGamesPlayedLabel = new javax.swing.JLabel();
         numberOfGamesWonLabel = new javax.swing.JLabel();
         playBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("cards");
+
+        cards.setText("jLabel1");
 
         card1.setText("card1");
 
@@ -113,7 +117,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
-        numberOfCardLabel.setText("Number of cards left in the deck:");
+        numberOfCardsLabel.setText("Number of cards left in the deck:");
 
         numberOfGamesPlayedLabel.setText("Number of games played:");
 
@@ -179,7 +183,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(numberOfGamesPlayedLabel)
                     .addComponent(numberOfGamesWonLabel)
-                    .addComponent(numberOfCardLabel))
+                    .addComponent(numberOfCardsLabel))
                 .addGap(75, 75, 75)
                 .addComponent(gamesPlayed)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -188,6 +192,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     .addContainerGap(390, Short.MAX_VALUE)
                     .addComponent(gamesWon)
                     .addGap(151, 151, 151)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(cards)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +224,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     .addComponent(newGameBtn)
                     .addComponent(playBtn))
                 .addGap(32, 32, 32)
-                .addComponent(numberOfCardLabel)
+                .addComponent(numberOfCardsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cardsLeft)
                 .addGap(19, 19, 19)
@@ -230,6 +239,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     .addContainerGap(420, Short.MAX_VALUE)
                     .addComponent(gamesWon)
                     .addGap(67, 67, 67)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(cards)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         card1.getAccessibleContext().setAccessibleName("0");
@@ -270,13 +284,14 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private javax.swing.JLabel card7;
     private javax.swing.JLabel card8;
     private javax.swing.JLabel card9;
+    private javax.swing.JLabel cards;
     private javax.swing.JLabel cardsLeft;
     private javax.swing.JButton clearAllBtn;
     private javax.swing.JLabel directionsLabel;
     private javax.swing.JLabel gamesPlayed;
     private javax.swing.JLabel gamesWon;
     private javax.swing.JButton newGameBtn;
-    private javax.swing.JLabel numberOfCardLabel;
+    private javax.swing.JLabel numberOfCardsLabel;
     private javax.swing.JLabel numberOfGamesPlayedLabel;
     private javax.swing.JLabel numberOfGamesWonLabel;
     private javax.swing.JButton playBtn;

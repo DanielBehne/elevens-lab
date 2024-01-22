@@ -1,4 +1,4 @@
-package elevensnetbeans.act09;
+package act09;
 
 import com.mrjaffesclass.apcs.messenger.*;
 import javax.swing.JLabel;
@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 public class View extends javax.swing.JFrame implements MessageHandler {
 
   private final Messenger mvcMessaging;
-  
+  private final JLabel[] cards;
   /**
    * Creates a new view
    * @param messages mvcMessaging object
@@ -14,8 +14,8 @@ public class View extends javax.swing.JFrame implements MessageHandler {
   public View(Messenger messages) {
     mvcMessaging = messages;   // Save the calling controller instance
     initComponents();           // Create and init the GUI components
+    cards = new JLabel[9]; 
   }
-  
   /**
    * Initialize the model here and subscribe
    * to any required messages
@@ -51,7 +51,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private void initComponents() {
 
         canvas1 = new java.awt.Canvas();
-        cards = new javax.swing.JLabel();
         card1 = new javax.swing.JLabel();
         card2 = new javax.swing.JLabel();
         card3 = new javax.swing.JLabel();
@@ -75,25 +74,32 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("cards");
 
-        cards.setText("jLabel1");
-
         card1.setText("card1");
+        card1.setName("0"); // NOI18N
 
         card2.setText("card2");
+        card2.setName("1"); // NOI18N
 
         card3.setText("card3");
+        card3.setName("2"); // NOI18N
 
         card4.setText("card4");
+        card4.setName("3"); // NOI18N
 
         card5.setText("card5");
+        card5.setName("4"); // NOI18N
 
         card6.setText("card6");
+        card6.setName("5"); // NOI18N
 
         card7.setText("card7");
+        card7.setName("6"); // NOI18N
 
         card8.setText("card8");
+        card8.setName("7"); // NOI18N
 
         card9.setText("card9");
+        card9.setName("8"); // NOI18N
 
         cardsLeft.setText("cardLeft");
 
@@ -144,27 +150,24 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(card1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(card2)
-                                        .addGap(88, 88, 88))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(card6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                                        .addComponent(card7)
-                                        .addGap(99, 99, 99)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(card8)
-                                    .addComponent(card3)))
+                                .addComponent(card6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                                .addComponent(card7)
+                                .addGap(99, 99, 99)
+                                .addComponent(card8))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addComponent(playBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(clearAllBtn))))
+                                    .addComponent(clearAllBtn)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(card1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(card2)
+                                .addGap(79, 79, 79)
+                                .addComponent(card3)))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -192,11 +195,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     .addContainerGap(390, Short.MAX_VALUE)
                     .addComponent(gamesWon)
                     .addGap(151, 151, 151)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(cards)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,9 +205,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(card1)
                     .addComponent(card2)
-                    .addComponent(card3)
                     .addComponent(card4)
-                    .addComponent(card5))
+                    .addComponent(card5)
+                    .addComponent(card3))
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(card6)
@@ -239,16 +237,10 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     .addContainerGap(420, Short.MAX_VALUE)
                     .addComponent(gamesWon)
                     .addGap(67, 67, 67)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(cards)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         card1.getAccessibleContext().setAccessibleName("0");
         card2.getAccessibleContext().setAccessibleName("1");
-        card3.getAccessibleContext().setAccessibleName("2");
         card4.getAccessibleContext().setAccessibleName("3");
         card5.getAccessibleContext().setAccessibleName("4");
         card5.getAccessibleContext().setAccessibleDescription("");
@@ -284,7 +276,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private javax.swing.JLabel card7;
     private javax.swing.JLabel card8;
     private javax.swing.JLabel card9;
-    private javax.swing.JLabel cards;
     private javax.swing.JLabel cardsLeft;
     private javax.swing.JButton clearAllBtn;
     private javax.swing.JLabel directionsLabel;

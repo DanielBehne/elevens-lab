@@ -59,9 +59,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
             if (cardSelectedStatus[i] == false) {
                 //clear border
-                thickness = 3;
-                LineBorder border = new LineBorder(color, thickness);
-                cards[i].setBorder(border);
+                //thickness = 3;
+                //LineBorder border = new LineBorder(color, thickness);
+                cards[i].setBorder(null);
             }
         }
         return count;
@@ -78,7 +78,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         for (int i = 0; i < cards.length; i++) {
             //if (gameWon == true) {
                 thickness = 3;
-                color = color.GREEN;
+                color = color.PINK;
                 LineBorder border = new LineBorder(color, thickness);
                 cards[i].setBorder(border);
             //}

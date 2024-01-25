@@ -174,6 +174,10 @@ public class Model implements MessageHandler {
             cardSelected[buttonNumber] = !cardSelected[buttonNumber];
           }
         }
+        mvcMessaging.notify("model:selectedCardsChanged", cardSelected);
+        mvcMessaging.notify("model:isLegalMove", isLegalMoveSelected());
+        
+        
         break;
       }
       
@@ -182,6 +186,8 @@ public class Model implements MessageHandler {
         for (int i=0; i<cardSelected.length; i++) {
           cardSelected[i] = false;
         }
+        mvcMessaging.notify("model:selectedCardsChanged", cardSelected);
+        mvcMessaging.notify("model:isLegalMove", isLegalMoveSelected());
         break;
       }
       
@@ -220,11 +226,16 @@ public class Model implements MessageHandler {
       // The New game button was pressed
       case "view:newGame": {
         this.newGame();
+        
       }
       
       default: {
         
       }
+      mvcMessaging.notify("model:boardChanged", board);
+      mvcMessaging.notify("model:selectedCardsChnged", cardSelected);
+      mvcMessaging.notify("model:isLegalMove", isLegalMoveSelected());
+      mvcMessaging.notify("model:cardsLeftInDeck", deck.size());
     }
   }
   

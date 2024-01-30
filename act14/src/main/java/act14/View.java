@@ -145,9 +145,32 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     }
                 }
             }
-            
+
             case "model:cardsLeftInDeck": {
-                
+                String num = (String) messagePayload;
+                cardsLeft.setText(num);
+
+            }
+
+            case "model:gamesWon": {
+                String num = (String) messagePayload;
+                gamesWon.setText(num);
+            }
+
+            case "model:gamesPlayed": {
+                String num = (String) messagePayload;
+                gamesPlayed.setText(num);
+            }
+
+            case "model:gameStatus": {
+                int num = (int) messagePayload;
+                if (num == Constants.YOU_LOSE) {
+                    setAllBorders(Color.RED, 2);
+                }
+                if (num == Constants.YOU_WIN) {
+                    setAllBorders(Color.GREEN, 2);
+                }
+
             }
 
             default: {

@@ -10,189 +10,196 @@ import javax.swing.border.LineBorder;
 
 public class View extends javax.swing.JFrame implements MessageHandler {
 
-  private final Messenger mvcMessaging;
-  
-  private JLabel[] cards;
-  
-  /**
-   * Creates a new view
-   * @param messages mvcMessaging object
-   */
-  public View(Messenger messages) {
-    mvcMessaging = messages;   // Save the calling controller instance
-    initComponents();           // Create and init the GUI components
-    cards = new JLabel[9];
-  }
-  
-  /**
-   * Initialize the model here and subscribe
-   * to any required messages
-   */
-  public void init() {
-    // Subscribe to messages here
-    mvcMessaging.subscribe("model:selectedCardsChanged", this);
-    mvcMessaging.subscribe("model:isLegalMove", this);
-    mvcMessaging.subscribe("model:boardChanged", this);
-    mvcMessaging.subscribe("model:cardsLeftInDeck", this);
-    mvcMessaging.subscribe("model:gamesWon", this);
-    mvcMessaging.subscribe("model:gamesPlayed", this);
-    mvcMessaging.subscribe("model:gameStatus", this);
-    
-    // Load card slots into an array for easier manipulation
-    cards[0] = card1;
-    cards[1] = card2;
-    cards[2] = card3;
-    cards[3] = card4;
-    cards[4] = card5;
-    cards[5] = card6;
-    cards[6] = card7;
-    cards[7] = card8;
-    cards[8] = card9;
-  }
-  
-  /**
-   * Sets the borders of the cards -- blue for selected cards
-   * and no border for unselected cards
-   * @param cardSelectedStatus Boolean array representing the selected status
-   * @return number of selected cards
-   */
-  private int setBorders(boolean[] cardSelectedStatus, Color color, int thickness) {
-    int count = 0;
-    for (int i=0; i<cardSelectedStatus.length; i++) {
-      if (cardSelectedStatus[i]) {
-        cards[i].setBorder(new LineBorder(color, thickness));
-        count++;
-      } else {
-        cards[i].setBorder(null);
-      }
-    }    
-    return count;
-  }
-  
-  /**
-   * Set the border of all the cards to the provided color
-   * @param color Color to set the border
-   */
-  private void setAllBorders(Color color, int thickness) {
-    for (JLabel card : cards) {
-      card.setBorder(new LineBorder(color, thickness));
-    }            
-  } 
-  
-  /**
-   * Sets the card faces based on the values stored in the
-   * cardData.  Each Card object has the rank and suit which are used
-   * to build the file name of the card image.
-   * @param cardData 
-   */
-  private void setCards(Card[] cardData) {
-    for (int i=0; i<cards.length; i++) {
-      if (cardData[i] != null) {
-        // If the card is defined then build the image file name from 
-        // the rank and suit ...
-        String imageFileName = "/"+cardData[i].getRank()+cardData[i].getSuit()+".GIF";
+    private final Messenger mvcMessaging;
 
-        // ... and create an ImageIcon and set it in the Card view object
-        URL imageURL = getClass().getResource(imageFileName);
-        cards[i].setIcon(new ImageIcon(imageURL));
-      } else {
-        // If the card is not defined, then just leave the card view blank
-        cards[i].setText("");
-      }
-    }    
-  }
-  
-  /**
-   * The model must implement messageHandler so the Model can process
-   * messages sent from the View.  messagePayload can be any object, but
-   * it must be cast into the expected class.
-   * @param messageName
-   * @param messagePayload 
-   */
-  @Override
-  public void messageHandler(String messageName, Object messagePayload) {
-    switch(messageName) {
-      
-      // The selected cards have changed so we should re-draw the borders
-      // and enable/disable the Clear all button accordingly
-      case "model:selectedCardsChanged": {
-        boolean[] cardSelectedStatus = (boolean[]) messagePayload;
-        int count = setBorders(cardSelectedStatus, Color.BLUE, 2);
-        clearAllBtn.setEnabled(count > 0);
-        break;        
-      }
-      
-      // Received from the model if the selected cards represent a legal move.
-      // We'll use this information to enable/disable the Play button. We will
-      // only enable the Play button if the selected cards represent a legal move.
-      case "model:isLegalMove": {
-        playBtn.setEnabled((boolean)messagePayload);
-        break;
-      }
-      
-      // The board has changed so we should update the board display accordingly
-      case "model:boardChanged": {
-        Card[] cardData = (Card[]) messagePayload;
-        setCards(cardData);
-        break;
-      }
-      
-      // The payload contains the number of cards left in the deck so we'll
-      // update the UI
-      case "model:cardsLeftInDeck": {
-        cardsLeft.setText(Integer.toString((int)messagePayload));
-        break;
-      }
-      
-      // The payload contains the number of games won so we'll update 
-      // the UI
-      case "model:gamesWon": {
-        gamesWon.setText(Integer.toString((int)messagePayload));
-        break;
-      }
-      
-      // The payload contains the number of games played so we'll update
-      // the UI
-      case "model:gamesPlayed": {
-        gamesPlayed.setText(Integer.toString((int)messagePayload));
-        break;
-      }
-      
-      // The payload contains the current game state (IN_PLAY, YOU_WON, or 
-      // YOU_LOST).  We will update the UI accordingly
-      case "model:gameStatus": {
-        switch ((int)messagePayload) {
-          case Constants.IN_PLAY:
-            directionsLabel.setText("Click to select a card; click again to de-select");
-            break;
-            
-          case Constants.YOU_WIN:
-            directionsLabel.setText("YOU WIN!!  Game over!");
-            setAllBorders(Color.GREEN, 2);
-            break;
-            
-          case Constants.YOU_LOSE:
-            directionsLabel.setText("YOU LOSE!!  Game over!");
-            setAllBorders(Color.RED, 2);
-            break;
-            
-          default:
-            break;
-        }
-      }
-      
-      default: {
-        
-      }
+    private JLabel[] cards;
+
+    /**
+     * Creates a new view
+     *
+     * @param messages mvcMessaging object
+     */
+    public View(Messenger messages) {
+        mvcMessaging = messages;   // Save the calling controller instance
+        initComponents();           // Create and init the GUI components
+        cards = new JLabel[9];
     }
-  }
 
-  /**
-   * This method is called from within the constructor to initialize the form.
-   * WARNING: Do NOT modify this code. The content of this method is always
-   * regenerated by the Form Editor.
-   */
-  @SuppressWarnings("unchecked")
+    /**
+     * Initialize the model here and subscribe to any required messages
+     */
+    public void init() {
+        // Subscribe to messages here
+        mvcMessaging.subscribe("model:selectedCardsChanged", this);
+        mvcMessaging.subscribe("model:isLegalMove", this);
+        mvcMessaging.subscribe("model:boardChanged", this);
+        mvcMessaging.subscribe("model:cardsLeftInDeck", this);
+        mvcMessaging.subscribe("model:gamesWon", this);
+        mvcMessaging.subscribe("model:gamesPlayed", this);
+        mvcMessaging.subscribe("model:gameStatus", this);
+
+        // Load card slots into an array for easier manipulation
+        cards[0] = card1;
+        cards[1] = card2;
+        cards[2] = card3;
+        cards[3] = card4;
+        cards[4] = card5;
+        cards[5] = card6;
+        cards[6] = card7;
+        cards[7] = card8;
+        cards[8] = card9;
+    }
+
+    /**
+     * Sets the borders of the cards -- blue for selected cards and no border
+     * for unselected cards
+     *
+     * @param cardSelectedStatus Boolean array representing the selected status
+     * @return number of selected cards
+     */
+    private int setBorders(boolean[] cardSelectedStatus, Color color, int thickness) {
+        int count = 0;
+        color = Constants.SELECTED_COLOR;
+        thickness = Constants.BORDER_WIDTH;
+        for (int i = 0; i < cardSelectedStatus.length; i++) {
+            if (cardSelectedStatus[i]) {
+                cards[i].setBorder(new LineBorder(color, thickness));
+                count++;
+            } else {
+                cards[i].setBorder(null);
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Set the border of all the cards to the provided color
+     *
+     * @param color Color to set the border
+     */
+    private void setAllBorders(Color color, int thickness) {
+        thickness = Constants.BORDER_WIDTH;
+        for (JLabel card : cards) {
+            card.setBorder(new LineBorder(color, thickness));
+        }
+    }
+
+    /**
+     * Sets the card faces based on the values stored in the cardData. Each Card
+     * object has the rank and suit which are used to build the file name of the
+     * card image.
+     *
+     * @param cardData
+     */
+    private void setCards(Card[] cardData) {
+        for (int i = 0; i < cards.length; i++) {
+            if (cardData[i] != null) {
+                // If the card is defined then build the image file name from 
+                // the rank and suit ...
+                String imageFileName = "/" + cardData[i].getRank() + cardData[i].getSuit() + ".GIF";
+
+                // ... and create an ImageIcon and set it in the Card view object
+                URL imageURL = getClass().getResource(imageFileName);
+                cards[i].setIcon(new ImageIcon(imageURL));
+            } else {
+                // If the card is not defined, then just leave the card view blank
+                cards[i].setText("");
+            }
+        }
+    }
+
+    /**
+     * The model must implement messageHandler so the Model can process messages
+     * sent from the View. messagePayload can be any object, but it must be cast
+     * into the expected class.
+     *
+     * @param messageName
+     * @param messagePayload
+     */
+    @Override
+    public void messageHandler(String messageName, Object messagePayload) {
+        switch (messageName) {
+
+            // The selected cards have changed so we should re-draw the borders
+            // and enable/disable the Clear all button accordingly
+            case "model:selectedCardsChanged": {
+                boolean[] cardSelectedStatus = (boolean[]) messagePayload;
+                int count = setBorders(cardSelectedStatus, Constants.SELECTED_COLOR, Constants.BORDER_WIDTH);
+                clearAllBtn.setEnabled(count > 0);
+                break;
+            }
+
+            // Received from the model if the selected cards represent a legal move.
+            // We'll use this information to enable/disable the Play button. We will
+            // only enable the Play button if the selected cards represent a legal move.
+            case "model:isLegalMove": {
+                playBtn.setEnabled((boolean) messagePayload);
+                break;
+            }
+
+            // The board has changed so we should update the board display accordingly
+            case "model:boardChanged": {
+                Card[] cardData = (Card[]) messagePayload;
+                setCards(cardData);
+                break;
+            }
+
+            // The payload contains the number of cards left in the deck so we'll
+            // update the UI
+            case "model:cardsLeftInDeck": {
+                cardsLeft.setText(Integer.toString((int) messagePayload));
+                break;
+            }
+
+            // The payload contains the number of games won so we'll update 
+            // the UI
+            case "model:gamesWon": {
+                gamesWon.setText(Integer.toString((int) messagePayload));
+                break;
+            }
+
+            // The payload contains the number of games played so we'll update
+            // the UI
+            case "model:gamesPlayed": {
+                gamesPlayed.setText(Integer.toString((int) messagePayload));
+                break;
+            }
+
+            // The payload contains the current game state (IN_PLAY, YOU_WON, or 
+            // YOU_LOST).  We will update the UI accordingly
+            case "model:gameStatus": {
+                switch ((int) messagePayload) {
+                    case Constants.IN_PLAY:
+                        directionsLabel.setText("Click to select a card; click again to de-select");
+                        break;
+
+                    case Constants.YOU_WIN:
+                        directionsLabel.setText("YOU WIN!!  Game over!");
+                        setAllBorders(Constants.WIN_COLOR, Constants.BORDER_WIDTH);
+                        break;
+
+                    case Constants.YOU_LOSE:
+                        directionsLabel.setText("YOU LOSE!!  Game over!");
+                        setAllBorders(Constants.LOSE_COLOR, Constants.BORDER_WIDTH);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            default: {
+
+            }
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -467,34 +474,35 @@ public class View extends javax.swing.JFrame implements MessageHandler {
   }// </editor-fold>//GEN-END:initComponents
 
   private void playBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBtnActionPerformed
-    // Play button was pressed!
-    mvcMessaging.notify("view:play");
+      // Play button was pressed!
+      mvcMessaging.notify("view:play");
   }//GEN-LAST:event_playBtnActionPerformed
 
   private void cardClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardClicked
-    // A card was clicked
-    String name = ((JLabel)evt.getSource()).getName();
-    int buttonNumber = Integer.parseInt(name);
-    mvcMessaging.notify("view:cardClicked", buttonNumber);
+      // A card was clicked
+      String name = ((JLabel) evt.getSource()).getName();
+      int buttonNumber = Integer.parseInt(name);
+      mvcMessaging.notify("view:cardClicked", buttonNumber);
   }//GEN-LAST:event_cardClicked
 
   private void clearAllBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearAllBtnActionPerformed
-    // The Clear all button was pressed
-    mvcMessaging.notify("view:clearAll");
+      // The Clear all button was pressed
+      mvcMessaging.notify("view:clearAll");
   }//GEN-LAST:event_clearAllBtnActionPerformed
 
   private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
-    // The New game button was pressed
-    mvcMessaging.notify("view:newGame");
+      // The New game button was pressed
+      mvcMessaging.notify("view:newGame");
   }//GEN-LAST:event_newGameBtnActionPerformed
 
-  /**
-   * Handler for the up button for field 1
-   * @param evt 
-   */
-  /**
-   * @param args the command line arguments
-   */
+    /**
+     * Handler for the up button for field 1
+     *
+     * @param evt
+     */
+    /**
+     * @param args the command line arguments
+     */
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private java.awt.Canvas canvas1;
@@ -520,52 +528,104 @@ public class View extends javax.swing.JFrame implements MessageHandler {
   // End of variables declaration//GEN-END:variables
 
     /**
-   * *********** FOR TESTING ONLY -- DO NOT CHANGE OR REMOVE ***********
-   */
-  public Object get(String prop) {
-    switch (prop) {
-      case "card1": return card1;
-      case "card2": return card2;
-      case "card3": return card3;
-      case "card4": return card4;
-      case "card5": return card5;
-      case "card6": return card6;
-      case "card7": return card7;
-      case "card8": return card8;
-      case "card9": return card9;
-      case "cards": return cards;
-      case "cardsLeft": return cardsLeft;
-      case "clearAllBtn": return clearAllBtn;
-      case "directionsLabel": return directionsLabel;
-      case "gamesPlayed": return gamesPlayed;
-      case "gamesWon": return gamesWon;
-      case "newGameBtn": return newGameBtn;
-      case "playBtn": return playBtn;
-      default: return null;
+     * *********** FOR TESTING ONLY -- DO NOT CHANGE OR REMOVE ***********
+     */
+    public Object get(String prop) {
+        switch (prop) {
+            case "card1":
+                return card1;
+            case "card2":
+                return card2;
+            case "card3":
+                return card3;
+            case "card4":
+                return card4;
+            case "card5":
+                return card5;
+            case "card6":
+                return card6;
+            case "card7":
+                return card7;
+            case "card8":
+                return card8;
+            case "card9":
+                return card9;
+            case "cards":
+                return cards;
+            case "cardsLeft":
+                return cardsLeft;
+            case "clearAllBtn":
+                return clearAllBtn;
+            case "directionsLabel":
+                return directionsLabel;
+            case "gamesPlayed":
+                return gamesPlayed;
+            case "gamesWon":
+                return gamesWon;
+            case "newGameBtn":
+                return newGameBtn;
+            case "playBtn":
+                return playBtn;
+            default:
+                return null;
+        }
     }
-  }
-    
-  public void set(String prop, Object val) {
-    switch (prop) {
-      case "card1": card1 = (JLabel)val; break;
-      case "card2": card2 = (JLabel)val; break;
-      case "card3": card3 = (JLabel)val; break;
-      case "card4": card4 = (JLabel)val; break;
-      case "card5": card5 = (JLabel)val; break;
-      case "card6": card6 = (JLabel)val; break;
-      case "card7": card7 = (JLabel)val; break;
-      case "card8": card8 = (JLabel)val; break;
-      case "card9": card9 = (JLabel)val; break;
-      case "cards": cards = (JLabel[])val; break;
-      case "cardsLeft": cardsLeft = (JLabel)val; break;
-      case "directionsLabel": directionsLabel = (JLabel)val; break;
-      case "gamesPlayed": gamesPlayed = (JLabel)val; break;
-      case "gamesWon": gamesWon = (JLabel)val; break;
-      case "playBtn": playBtn = (JButton)val; break;
-      case "clearAllBtn": clearAllBtn = (JButton)val; break;
-      case "newGameBtn": newGameBtn = (JButton)val; break;      
-      default:  ;
+
+    public void set(String prop, Object val) {
+        switch (prop) {
+            case "card1":
+                card1 = (JLabel) val;
+                break;
+            case "card2":
+                card2 = (JLabel) val;
+                break;
+            case "card3":
+                card3 = (JLabel) val;
+                break;
+            case "card4":
+                card4 = (JLabel) val;
+                break;
+            case "card5":
+                card5 = (JLabel) val;
+                break;
+            case "card6":
+                card6 = (JLabel) val;
+                break;
+            case "card7":
+                card7 = (JLabel) val;
+                break;
+            case "card8":
+                card8 = (JLabel) val;
+                break;
+            case "card9":
+                card9 = (JLabel) val;
+                break;
+            case "cards":
+                cards = (JLabel[]) val;
+                break;
+            case "cardsLeft":
+                cardsLeft = (JLabel) val;
+                break;
+            case "directionsLabel":
+                directionsLabel = (JLabel) val;
+                break;
+            case "gamesPlayed":
+                gamesPlayed = (JLabel) val;
+                break;
+            case "gamesWon":
+                gamesWon = (JLabel) val;
+                break;
+            case "playBtn":
+                playBtn = (JButton) val;
+                break;
+            case "clearAllBtn":
+                clearAllBtn = (JButton) val;
+                break;
+            case "newGameBtn":
+                newGameBtn = (JButton) val;
+                break;
+            default:  ;
+        }
     }
-  }
-  
+
 }
